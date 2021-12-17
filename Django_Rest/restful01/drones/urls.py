@@ -1,40 +1,36 @@
-from django.urls import path
+"""
+
+"""
+from django.urls import re_path
 from drones import views
 
 
 urlpatterns = [
-    path('done-categoies/',
-        views.DoneCategoyList.as_view(),
-        name=views.DoneCategoyList.name),
-
-    path('done-categoies/<int:pk>',
-        views.DoneCategoyDetail.as_view(),
-        name=views.DoneCategoyDetail.name),
-
-    path('dones/',
-        views.DoneList.as_view(),
-        name=views.DoneList.name),
-
-    path('dones/<int:pk>',
-        views.DoneDetail.as_view(),
-        name=views.DoneDetail.name),
-
-    path('pilots/',
+	re_path(r'^vehicle-categories/$',
+		views.DroneCategoryList.as_view(),
+		name=views.DroneCategoryList.name),
+	re_path(r'^vehicle-categories/(?P<pk>[0-9]+)$',
+		views.DroneCategoryDetail.as_view(),
+		name=views.DroneCategoryDetail.name),
+	re_path(r'^vehicles/$',
+		views.DroneList.as_view(),
+		name=views.DroneList.name),
+	re_path(r'^vehicles/(?P<pk>[0-9]+)$',
+		views.DroneDetail.as_view(),
+		name=views.DroneDetail.name),
+    re_path(r'^pilots/$',
         views.PilotList.as_view(),
         name=views.PilotList.name),
-
-    path('pilots/<int:pk>',
+    re_path(r'^pilots/(?P<pk>[0-9]+)$',
         views.PilotDetail.as_view(),
         name=views.PilotDetail.name),
-    path('competitions/',
+    re_path(r'^competitions/$',
         views.CompetitionList.as_view(),
         name=views.CompetitionList.name),
-
-    path('competitions/<int:pk>',
+    re_path(r'^competitions/(?P<pk>[0-9]+)$',
         views.CompetitionDetail.as_view(),
         name=views.CompetitionDetail.name),
-
-    path('',
+    re_path(r'^$',
         views.ApiRoot.as_view(),
         name=views.ApiRoot.name),
 ]
